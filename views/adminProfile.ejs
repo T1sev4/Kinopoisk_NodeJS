@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head.ejs') %>
+    <title>Document</title>
+  </head>
+  <body>
+    <%- include('partials/header.ejs') %>
+    <div class="container">
+      <div class="main">
+        <div class="categories">
+          <h3>Жанры</h3>
+          <a href="">Драма</a>
+          <a href="">Комедия</a>
+          <a href="">Ужасы</a>
+        </div>
+        <div class="main-content">
+          <h3>Профиль</h3>
+          <div class="profile">
+            <div class="profile-img">
+              <img
+                src="/images/avatar-profile.png"
+                alt=""
+              />
+            </div>
+            <div class="profile-info">
+              <p><span>Полное имя:</span> Сейтжанов Ельнур</p>
+              <p><span>E-mail:</span> yelnur@mail.ru</p>
+              <button class="edit-btn">Редактировать профиль</button>
+              <button class="logout-btn">Выход</button>
+            </div>
+          </div>
+          <h3>Сохраненные фильмы</h3>
+          <a
+            href="/new"
+            class="add-btn"
+            >Добавить фильм</a
+          >
+          <div class="main-card">
+            <div class="card-left">
+              <div class="film-img">
+                <img
+                  src="/images/films/film1.webp"
+                  alt=""
+                />
+              </div>
+              <div class="film-info">
+                <a href="">Все везде и сразу</a>
+                <a href="">Everything Everywhere All at once, 2021, 139min</a>
+                <a href="">США, Фантастика</a>
+                <button class="film-btn">
+                  <img
+                    src="/images/icons/play.svg"
+                    alt=""
+                  />
+                  Смотреть
+                </button>
+              </div>
+            </div>
+            <div class="card-right">
+              <div class="film-rate">
+                <p>7.3</p>
+              </div>
+              <div class="film-btns">
+                <a
+                  href="/edit"
+                  class=""
+                  >Редактировать</a
+                >
+                <a
+                  href=""
+                  class=""
+                  >Удалить</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
