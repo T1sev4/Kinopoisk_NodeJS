@@ -47,3 +47,10 @@
   border-radius: 7px;
   cursor: pointer;
 }
+.fieldset select {
+  padding: 15px 20px;
+  border: 1px solid rgba(31, 31, 31, 0.1);
+  border-radius: 7px;
+  font-size: 15px;
+  box-sizing: border-box;
+}

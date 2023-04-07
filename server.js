@@ -2,30 +2,15 @@ const express = require('express');
 
 const app = express();
 
+require('./server/config/db');
+
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'ejs');
+// подключение файла в котором находится рендер страниц
+app.use(require('./server/pages/router'));
 
-app.get('/', (req, res) => {
-  res.render('index');
-});
-app.get('/login', (req, res) => {
-  res.render('login');
-});
-app.get('/register', (req, res) => {
-  res.render('register');
-});
-app.get('/profile', (req, res) => {
-  res.render('profile');
-});
-app.get('/admin', (req, res) => {
-  res.render('adminProfile');
-});
-app.get('/new', (req, res) => {
-  res.render('newFilm');
-});
-app.get('/edit', (req, res) => {
-  res.render('editFilm');
-});
+app.use(require('./server/Genres/router'));
+
 const PORT = 8000;
 app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}`);

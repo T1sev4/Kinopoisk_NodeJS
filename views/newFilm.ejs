@@ -68,8 +68,9 @@
               name="genre"
               id=""
             >
-              <option value="">Драма</option>
-              <option value="">Комедия</option>
+              <% genres.forEach(genre => { %>
+              <option value=""><%= genre.name %></option>
+              <% }) %>
             </select>
           </fieldset>
           <fieldset class="fieldset">
