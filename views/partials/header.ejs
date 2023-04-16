@@ -1,32 +1,20 @@
 <header>
   <div class="head-logo">
     <a href="/">
-      <img
-        src="/images/logo.svg"
-        alt=""
-      />
+      <img src="/images/logo.svg" alt="" />
     </a>
   </div>
   <div class="head-menu">
     <a href="">
-      <img
-        src="/images/icons/play.svg"
-        alt=""
-      />
+      <img src="/images/icons/play.svg" alt="" />
       Онлайн кинотеатр
     </a>
     <a href="">
-      <img
-        src="/images/icons/tv.svg"
-        alt=""
-      />
+      <img src="/images/icons/tv.svg" alt="" />
       Установить на ТВ
     </a>
     <div class="head-search">
-      <input
-        type="text"
-        placeholder="Фильмы, сериалы, персоны"
-      />
+      <input type="text" placeholder="Фильмы, сериалы, персоны" />
       <button>
         <svg
           class="styles_icon__1bYKL search-form-submit-button__icon"
@@ -46,6 +34,10 @@
     </div>
   </div>
   <div class="head-buttons">
+    <% if(user._id && user.full_name.length > 0){ %>
+    <a href="/profile/<%= user._id %>">Профиль</a>
+    <% }else{ %>
     <a href="/login">Войти</a>
+    <% } %>
   </div>
 </header>

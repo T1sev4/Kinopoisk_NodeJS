@@ -16,8 +16,10 @@ const signUp = async (req, res) => {
   if (findUser) {
     res.redirect('/register?error=3');
   }
-
+  // хэширование пароля при помощи библиотеки bcrypt
+  // gensalt генерации соли
   bcrypt.genSalt(10, (err, salt) => {
+    // соединение соли и пароля
     bcrypt.hash(req.body.password, salt, function (err, hash) {
       new User({
         email: req.body.email,
@@ -29,4 +31,21 @@ const signUp = async (req, res) => {
   });
 };
 
-module.exports = { signUp };
+// SignIn
+
+const signIn = (req, res) => {
+  console.log(req.user);
+  res.redirect(`/profile/${req.user._id}`);
+};
+
+//SignOut
+
+const signOut = (req, res) => {
+  req.logout(function (err) {
+    if (err) {
+      console.log(err);
+    }
+  });
+  res.redirect('/');
+};
+module.exports = { signUp, signIn, signOut };

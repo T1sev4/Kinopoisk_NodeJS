@@ -8,18 +8,11 @@
     <%- include('partials/header.ejs') %>
     <div class="container">
       <div class="main">
-        <form
-          action=""
-          class="form"
-        >
+        <form action="/api/signin" class="form" method="POST">
           <h3>Войти</h3>
           <fieldset class="fieldset">
             <label for="">E-mail</label>
-            <input
-              type="email"
-              placeholder="Введите почту"
-              name="email"
-            />
+            <input type="email" placeholder="Введите почту" name="email" />
           </fieldset>
           <fieldset class="fieldset">
             <label for="">Пароль</label>
