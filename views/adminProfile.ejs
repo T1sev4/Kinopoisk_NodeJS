@@ -10,49 +10,36 @@
       <div class="main">
         <div class="categories">
           <h3>Жанры</h3>
-          <a href="">Драма</a>
-          <a href="">Комедия</a>
-          <a href="">Ужасы</a>
+          <% genres.forEach(genre => { %>
+          <a href=""><%= genre.name %></a>
+          <% }) %>
         </div>
         <div class="main-content">
           <h3>Профиль</h3>
           <div class="profile">
             <div class="profile-img">
-              <img
-                src="/images/avatar-profile.png"
-                alt=""
-              />
+              <img src="/images/avatar-profile.png" alt="" />
             </div>
             <div class="profile-info">
-              <p><span>Полное имя:</span> Сейтжанов Ельнур</p>
-              <p><span>E-mail:</span> yelnur@mail.ru</p>
-              <button class="edit-btn">Редактировать профиль</button>
-              <button class="logout-btn">Выход</button>
+              <p><span>Полное имя:</span> <%= user.full_name %></p>
+              <p><span>E-mail:</span> <%= user.email %></p>
+              <a class="edit-btn">Редактировать профиль</a>
+              <a href="/api/signout" class="logout-btn">Выход</a>
             </div>
           </div>
-          <h3>Сохраненные фильмы</h3>
-          <a
-            href="/new"
-            class="add-btn"
-            >Добавить фильм</a
-          >
+          <h3>Фильмы</h3>
+          <a href="/new" class="add-btn">Добавить фильм</a>
           <div class="main-card">
             <div class="card-left">
               <div class="film-img">
-                <img
-                  src="/images/films/film1.webp"
-                  alt=""
-                />
+                <img src="/images/films/film1.webp" alt="" />
               </div>
               <div class="film-info">
                 <a href="">Все везде и сразу</a>
                 <a href="">Everything Everywhere All at once, 2021, 139min</a>
                 <a href="">США, Фантастика</a>
                 <button class="film-btn">
-                  <img
-                    src="/images/icons/play.svg"
-                    alt=""
-                  />
+                  <img src="/images/icons/play.svg" alt="" />
                   Смотреть
                 </button>
               </div>
@@ -62,16 +49,8 @@
                 <p>7.3</p>
               </div>
               <div class="film-btns">
-                <a
-                  href="/edit"
-                  class=""
-                  >Редактировать</a
-                >
-                <a
-                  href=""
-                  class=""
-                  >Удалить</a
-                >
+                <a href="/edit" class="">Редактировать</a>
+                <a href="" class="">Удалить</a>
               </div>
             </div>
           </div>
