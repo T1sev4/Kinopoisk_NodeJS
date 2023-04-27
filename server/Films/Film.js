@@ -5,10 +5,10 @@ const FilmSchema = new mongoose.Schema({
   titleEng: String,
   year: Number,
   time: String,
-  country: { type: Schema.Types.ObjectId, ref: 'Country' },
-  genre: { type: Schema.Types.ObjectId, ref: 'Genre' },
+  country: { type: Schema.Types.ObjectId, ref: 'country' },
+  genre: { type: Schema.Types.ObjectId, ref: 'genre' },
   image: String,
-  author: { type: Schema.Types.ObjectId, ref: 'User' },
+  author: { type: Schema.Types.ObjectId, ref: 'user' },
 });
 
 module.exports = mongoose.model('film', FilmSchema);

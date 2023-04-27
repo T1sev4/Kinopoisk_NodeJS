@@ -2,34 +2,39 @@ const User = require('./User');
 const bcrypt = require('bcrypt');
 const signUp = async (req, res) => {
   if (
-    req.body.email.length <= 0 &&
-    req.body.full_name.length <= 0 &&
-    req.body.password.length <= 0 &&
-    req.body.re_password.length <= 0
+    req.body.email.length > 0 &&
+    req.body.full_name.length > 0 &&
+    req.body.password.length > 0 &&
+    req.body.re_password.length > 0
   ) {
-    res.redirect('/register?error=1');
-  } else if (req.body.password !== req.body.re_password) {
-    res.redirect('/register?error=2');
+    const findUser = await User.findOne({ email: req.body.email }).count();
+    if (req.body.password !== req.body.re_password) {
+      res.redirect('/register?error=2');
+    }
+    else if (findUser) {
+      res.redirect('/register?error=3');
+    }else{
+      // хэширование пароля при помощи библиотеки bcrypt
+      // gensalt генерации соли
+      bcrypt.genSalt(10, (err, salt) => {
+        // соединение соли и пароля
+        bcrypt.hash(req.body.password, salt, function (err, hash) {
+          new User({
+            email: req.body.email,
+            full_name: req.body.full_name,
+            isAdmin: false,
+            password: hash,
+          }).save();
+          res.redirect('/login');
+        });
+      });
+    }
+  } else{
+     res.redirect('/register?error=1');
+     
   }
 
-  const findUser = await User.findOne({ email: req.body.email }).count();
-  if (findUser) {
-    res.redirect('/register?error=3');
-  }
-  // хэширование пароля при помощи библиотеки bcrypt
-  // gensalt генерации соли
-  bcrypt.genSalt(10, (err, salt) => {
-    // соединение соли и пароля
-    bcrypt.hash(req.body.password, salt, function (err, hash) {
-      new User({
-        email: req.body.email,
-        full_name: req.body.full_name,
-        isAdmin: false,
-        password: hash,
-      }).save();
-      res.redirect('/login');
-    });
-  });
+
 };
 
 // SignIn
@@ -53,3 +58,4 @@ const signOut = (req, res) => {
   res.redirect('/');
 };
 module.exports = { signUp, signIn, signOut };
+

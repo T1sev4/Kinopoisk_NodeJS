@@ -67,6 +67,7 @@
 }
 .film-info a {
   color: #000;
+  margin: 5px 0;
 }
 .film-info a:first-child {
   font-size: 18px;
