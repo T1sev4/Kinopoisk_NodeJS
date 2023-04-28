@@ -52,7 +52,7 @@
               </div>
               <div class="film-btns">
                 <a href="/edit/<%= film._id  %>" class="">Редактировать</a>
-                <a href="" class="">Удалить</a>
+                <a class="" onclick="deleteFilms('<%= film._id %>', '<%=film.author._id%>')">Удалить</a>
               </div>
             </div>
           </div>
@@ -60,5 +60,6 @@
         </div>
       </div>
     </div>
+    <%- include('partials/scripts.ejs')  %>
   </body>
 </html>
