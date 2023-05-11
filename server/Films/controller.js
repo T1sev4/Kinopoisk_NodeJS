@@ -1,4 +1,5 @@
 const Film = require('./Film');
+const User = require('../auth/User');
 const fs = require('fs');
 const path = require('path');
 
@@ -77,4 +78,21 @@ const deleteFilm = async (req, res) => {
     res.status('404').send('Not found');
   }
 }
-module.exports = { createFilm, editFilm, deleteFilm };
+
+const saveFilm = async (req, res) => {
+  if(req.user && req.body.id){
+    const user = await User.findById(req.user.id);
+    const findFilm = user.toWatch.filter(item => item._id == req.body.id);
+    // user.toWatch = []
+    // user.save()
+    if(findFilm.length == 0){
+      user.toWatch.push(req.body.id);
+      user.save();
+      res.send('Фильм успешно сохранен');
+    }else{
+      res.send('Фильм уже сохранен')
+    }
+  }
+ 
+}
+module.exports = { createFilm, editFilm, deleteFilm, saveFilm };
