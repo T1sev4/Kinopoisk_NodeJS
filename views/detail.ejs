@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('partials/head.ejs')  %>
+  <title>Document</title>
+</head>
+<body>
+  <%- include('partials/header.ejs')  %>
+  <div class="container">
+    <div class="main-detail">
+      <div class="detail">
+        <div class="film-image">
+          <img src="/images/films/film1.webp" alt="">
+        </div>
+        <div class="film-info-detail">
+          <h2>Один дома(1990)</h2>
+          <p>Home Alone</p>
+          <button class="film-btn" onclick="saveToWatch()">
+            <img
+              src="/images/icons/save.svg"
+              alt=""
+            />
+            Буду смотреть
+          </button>
+          <h4>О фильме</h4>
+          <div class="film-details">
+            <p>Год производства</p>
+            <p>1990</p>
+          </div>
+          <div class="film-details">
+            <p>Страна</p>
+            <p>США</p>
+          </div>
+          <div class="film-details">
+            <p>Жанр</p>
+            <p>Комедия</p>
+          </div>
+          <div class="film-details">
+            <p>Время</p>
+            <p>109мин</p>
+          </div>
+        </div>
+      </div>
+      <div class="film-player">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/bBU_64CTNsw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+    </div>
+   
+  </div>
+  <%- include('partials/scripts')  %>
+</body>
+</html>

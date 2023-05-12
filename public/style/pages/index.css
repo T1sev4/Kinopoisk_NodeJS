@@ -1,7 +1,7 @@
 .main {
   padding: 20px 40px 50px;
   background-color: #fff;
-  /* height: 75vh; */
+  min-height: 75vh;
   display: flex;
   justify-content: space-between;
 }

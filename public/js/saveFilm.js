@@ -6,3 +6,12 @@ function saveToWatch(id){
     }
   })
 }
+
+function deleteFromToWatch(id){
+  axios.delete(`/api/films/save/${id}`, {id}).then(data => {
+    if(data.status == 200){
+      alert(data.data)
+      location.reload()
+    }
+  })
+}
