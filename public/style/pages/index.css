@@ -118,3 +118,28 @@
   background-color: #f7f7f7;
   transition: 0.3s;
 }
+.pages{
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+.pages a{
+  color: #1f1f1f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  min-width: 36px;
+  height: 36px;
+  min-height: 36px;
+  border-radius: 8px;
+  transition: .4s;
+}
+.pages a:hover{
+  text-decoration: underline;
+}
+.active-page{
+  color: #fff !important; 
+  background: #1f1f1f;
+}

@@ -6,10 +6,28 @@ const User = require('../auth/User');
 const Film = require('../Films/Film')
 
 router.get('/', async (req, res) => {
+  // фильтрация по категориям //
+  const options = {};
+  const genres = await Genres.findOne({key: req.query.genre})
+  if(genres){
+
+    options.genre = genres._id;
+  }
+ // фильтрация по категориям //
+
+  //  pagination //
+  let page = 0;
+  const limit = 6;
+  if(req.query.page && req.query.page > 0){
+    page = req.query.page
+  }
+  const totalFilms = await Film.count();
+  //  pagination //
+
   const allGenres = await Genres.find();
-  const films = await Film.find().populate('country', 'name').populate('genre', 'name');
+  const films = await Film.find(options).limit(limit).skip(page * limit).populate('country', 'name').populate('genre', 'name');
   const user = req.user ? await User.findById(req.user._id) : {}
-  res.render('index', { genres: allGenres, user, films });
+  res.render('index', { genres: allGenres, user, films, pages: Math.ceil(totalFilms / limit) });
 });
 router.get('/login', (req, res) => {
   res.render('login', { user: req.user ? req.user : {} });
@@ -67,7 +85,8 @@ router.get('/not-found', (req, res) => {
   res.render('notFound');
 }); 
 
-router.get('/detail/:id', (req, res) => {
-  res.render('detail', {user: {}}); 
+router.get('/detail/:id', async (req, res) => {
+  const film = await Film.findById(req.params.id).populate('country').populate('genre')
+  res.render('detail', {user: req.user ? req.user : {}, film}); 
 })
 module.exports = router;

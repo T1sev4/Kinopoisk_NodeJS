@@ -11,7 +11,7 @@
         <div class="categories">
           <h3>Жанры</h3>
           <% genres.forEach(genre => { %>
-          <a href="/<%= genre.key %>"><%= genre.name %></a>
+            <a href="?genre=<%= genre.key %>"><%= genre.name %></a>
           <% }) %>
         </div>
         <div class="main-content">
@@ -63,6 +63,14 @@
             </div>
           </div>
           <% }) %>
+
+          <div class="pages">
+            <% 
+              for (let i = 0; i < pages; i++) {
+            %>  
+                <a onclick="changeActivePage(i)" class="page_link" href="?page=<%= i%>"> <%= i + 1 %> </a>
+            <% } %>
+          </div>
         </div>
       </div>
     </div>
