@@ -66,9 +66,16 @@
 
           <div class="pages">
             <% 
+              let localsString = ''
+              if(locals.genre){
+                localsString = `genre=${locals.genre}&`
+              }
+              if(locals.search){
+                localsString = `search=${locals.search}&`
+              }
               for (let i = 0; i < pages; i++) {
             %>  
-                <a onclick="changeActivePage(i)" class="page_link" href="?page=<%= i%>"> <%= i + 1 %> </a>
+                <a class="page_link" href="?<%= localsString%>page=<%= i%>"> <%= i + 1 %> </a>
             <% } %>
           </div>
         </div>

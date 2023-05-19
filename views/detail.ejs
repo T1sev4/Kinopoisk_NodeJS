@@ -17,7 +17,7 @@
           <p><%= film.titleEng  %></p>
 
           <% 
-            if(user.toWatch.includes(film._id)){ 
+            if(user && user.toWatch &&  user.toWatch.includes(film._id)){ 
           %>
             <button class="film-btn" onclick="deleteFromToWatch('<%= film._id %>')">
               <img src="/images/icons/saved.png" alt="" />
@@ -61,7 +61,29 @@
           <iframe width="560" height="315" src="<%= film.video%>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
       <% } %>
-    
+        
+      <div class="comments">
+        <h3>Комментарий</h3>  
+        <% if(user && user._id){ %>
+        <form action="" class="add-comment-form">
+          <div class="comment-stars">
+            <p>Оцените фильм</p>
+            <img src="/images/icons/star.svg" alt="">
+            <img src="/images/icons/star.svg" alt="">
+            <img src="/images/icons/star.svg" alt="">
+            <img src="/images/icons/star.svg" alt="">
+            <img src="/images/icons/star.svg" alt="">
+          </div>
+          <p>Напишите комментарий</p>
+          <textarea name="text"></textarea>  
+          <button>Сохранить</button>
+        </form>
+        <% }else{ %>
+          <p>
+            <a href="/login">Войдите</a> или <a href="/register">зарегистрируйтесь</a> чтобы оставить комментарий  
+          </p>
+        <% } %>
+      </div>
     </div>
    
   </div>

@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
   if(genres){
 
     options.genre = genres._id;
+    res.locals.genre = req.query.genre
   }
  // фильтрация по категориям //
 
@@ -21,11 +22,25 @@ router.get('/', async (req, res) => {
   if(req.query.page && req.query.page > 0){
     page = req.query.page
   }
-  const totalFilms = await Film.count();
+  if(req.query.search && req.query.search.length > 0){
+    options.$or = [
+      {
+        //      регулярное выражение(ищем по тайтлу)(i - не смотрим на регистр)
+        titleRus: new RegExp(req.query.search, 'i'),
+      },
+      {
+        titleEng: new RegExp(req.query.search, 'i'),
+      },
+    ]
+    res.locals.search = req.query.search
+  }
+
+
+  const totalFilms = await Film.count(options);
   //  pagination //
 
   const allGenres = await Genres.find();
-  const films = await Film.find(options).limit(limit).skip(page * limit).populate('country', 'name').populate('genre', 'name');
+  const films = await Film.find(options).limit(limit).skip(page * limit).populate('country').populate('genre');
   const user = req.user ? await User.findById(req.user._id) : {}
   res.render('index', { genres: allGenres, user, films, pages: Math.ceil(totalFilms / limit) });
 });
