@@ -9,6 +9,7 @@
 .comment-stars img{
   width: 30px;
   filter: grayscale(100%);
+  z-index: 0;
 }
 .add-comment-form{
   margin-top: 30px;
@@ -39,7 +40,7 @@
 .add-comment-form p{
   margin: 10px 0;
 }
-.comments p{
+.comments>p{
   margin-top: 20px;
 }
 .comments p a{
@@ -48,4 +49,16 @@
 }
 .comments p a:hover{
   text-decoration: underline;
+}
+.active-star{
+  filter: grayscale(0) !important;
+}
+.comment{
+  margin: 20px 0;
+  border: 1px solid #00000039;
+  border-radius: 10px;
+  padding: 15px;
+}
+.comment p{
+  margin: 15px 0;
 }
