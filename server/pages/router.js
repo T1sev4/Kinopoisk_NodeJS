@@ -109,4 +109,6 @@ router.get('/detail/:id', async (req, res) => {
   const film = await Film.findById(req.params.id).populate('country').populate('genre')
   res.render('detail', {user: req.user ? req.user : {}, film, rates, averageRate: (averageRate / rates.length).toFixed(1)}); 
 })
+
+
 module.exports = router;
